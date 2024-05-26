@@ -4,6 +4,13 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_settings">Settings</string>
 
+    <string name="stun_test">NAT behaviour discovery</string>
+    <string name="stun_test_summary">Determine the client\'s NAT mapping behaviour and the NAT filtering behaviour defined in RFC 3478 using STUN.</string>
+    <string name="start">Start</string>
+    <string name="stun_attest_loading">This may take a few minutes…</string>
+    <string name="nat_stun_server_hint">STUN server</string>
+    <string name="nat_result_hint">NAT check result</string>
+
     <string name="scanning">Scanning…</string>
     <string name="scan_vpn_app">Scan VPN apps</string>
     <string name="scan_vpn_app_summary">Check the VPN installed on the device and its type.</string>
@@ -13,4 +20,5 @@
     <string name="vpn_golang_version">Go version</string>
     <string name="vpn_app_type_other">Other</string>
     <string name="vpn_core_type_unknown">Unknown</string>
+
 </resources>

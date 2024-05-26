@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.github.dust2.tools.databinding.FragmentHomeBinding
+import com.github.dust2.tools.ui.StunActivity
 import com.github.dust2.tools.ui.VPNScanerActivity
 import com.github.dust2.tools.util.Utils
 
@@ -29,6 +30,10 @@ class HomeFragment : Fragment() {
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
+        binding.layoutStunTest.setOnClickListener {
+            startActivity(Intent(requireContext(), StunActivity::class.java))
+        }
 
         binding.layoutScanVpnApps.setOnClickListener {
             startActivity(Intent(requireContext(), VPNScanerActivity::class.java))
