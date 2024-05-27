@@ -27,12 +27,14 @@ class StunActivity : BaseActivity() {
     }
 
     private fun doTest() {
-        binding.waitLayout.isVisible = true
+        binding.idProgress.isVisible = true
+        binding.stunTest.isVisible = false
         runOnDefaultDispatcher {
             val result = Libcore.stunTest(binding.natStunServer.text.toString())
             onMainDispatcher {
-                binding.waitLayout.isVisible = false
                 binding.natResult.text = result
+                binding.idProgress.isVisible = false
+                binding.stunTest.isVisible = true
             }
         }
     }

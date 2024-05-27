@@ -4,10 +4,14 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_settings">Settings</string>
 
+    <string name="cloudflare_wrap" translatable="false">Cloudflare Warp</string>
+    <string name="cloudflare_wrap_summary">CloudFlare Warp is a free WireGuard VPN provider. By using it, you agree to the TOS.</string>
+    <string name="generating">Generating…</string>
+    <string name="cloudflare_wrap_result_hint">Cloudflare Warp result</string>
+
     <string name="stun_test">NAT behaviour discovery</string>
     <string name="stun_test_summary">Determine the client\'s NAT mapping behaviour and the NAT filtering behaviour defined in RFC 3478 using STUN.</string>
     <string name="start">Start</string>
-    <string name="stun_attest_loading">This may take a few minutes…</string>
     <string name="nat_stun_server_hint">STUN server</string>
     <string name="nat_result_hint">NAT check result</string>
 

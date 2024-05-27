@@ -48,15 +48,16 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/nat_stun_server_hint"
-                            android:textAppearance="?attr/textAppearanceSubtitle2" />
+                            android:text="@string/cloudflare_wrap"
+                            android:textAppearance="?attr/textAppearanceHeadline6" />
 
-                        <EditText
-                            android:id="@+id/nat_stun_server"
-                            android:layout_width="match_parent"
+                        <TextView
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:ems="10"
-                            android:inputType="text" />
+                            android:layout_marginTop="16dp"
+                            android:text="@string/cloudflare_wrap_summary"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
 
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
@@ -81,11 +82,11 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/nat_result_hint"
+                            android:text="@string/cloudflare_wrap_result_hint"
                             android:textAppearance="?attr/textAppearanceSubtitle2" />
 
                         <TextView
-                            android:id="@+id/nat_result"
+                            android:id="@+id/warp_result"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp" />
@@ -104,7 +105,7 @@
                     android:orientation="horizontal">
 
                     <Button
-                        android:id="@+id/stunTest"
+                        android:id="@+id/warpGenerate"
                         style="@style/Widget.AppCompat.Button.Borderless"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

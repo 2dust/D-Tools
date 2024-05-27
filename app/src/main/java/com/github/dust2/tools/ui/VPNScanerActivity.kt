@@ -143,7 +143,7 @@ class VPNScanerActivity : BaseActivity() {
             withContext(Dispatchers.Main) {
                 adapter.notifyItemInserted(index)
                 binding.scanVpnResult.scrollToPosition(index)
-                binding.scanVpnProgress.setProgressCompat(
+                binding.idProgress.setProgressCompat(
                     (((index + 1).toFloat() / vpnAppList.size.toFloat()) * 100).roundToInt(),
                     true
                 )
@@ -151,7 +151,7 @@ class VPNScanerActivity : BaseActivity() {
             System.gc()
         }
         withContext(Dispatchers.Main) {
-            binding.scanVpnProgress.isVisible = false
+            binding.idProgress.isVisible = false
         }
     }
 
