@@ -41,8 +41,13 @@ class CfWarpActivity : BaseActivity() {
         runOnDefaultDispatcher {
             val bean = Cloudflare.makeWireGuardConfiguration()
             onMainDispatcher {
-                binding.warpResult.text = bean.toString()
-                Utils.setClipboard(context, genShare(bean))
+                if (bean != null) {
+                    binding.warpResult.text = bean.toString()
+                    Utils.setClipboard(context, genShare(bean))
+                } else {
+                    binding.warpResult.text = getString(R.string.toast_failure)
+                }
+
                 binding.idProgress.isVisible = false
                 binding.warpGenerate.isVisible = true
             }

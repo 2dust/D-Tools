@@ -30,7 +30,12 @@ class StunActivity : BaseActivity() {
         binding.idProgress.isVisible = true
         binding.stunTest.isVisible = false
         runOnDefaultDispatcher {
-            val result = Libcore.stunTest(binding.natStunServer.text.toString())
+            val result =
+                try { Libcore.stunTest(binding.natStunServer.text.toString())
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    ""
+                }
             onMainDispatcher {
                 binding.natResult.text = result
                 binding.idProgress.isVisible = false

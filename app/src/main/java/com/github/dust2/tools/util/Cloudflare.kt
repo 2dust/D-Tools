@@ -17,7 +17,7 @@ object Cloudflare {
     private const val CLIENT_VERSION_KEY = "CF-Client-Version"
     private const val CLIENT_VERSION = "a-6.3-1922"
 
-    fun makeWireGuardConfiguration(): SingBoxBean.OutboundBean {
+    fun makeWireGuardConfiguration(): SingBoxBean.OutboundBean? {
         val keyPair = Libcore.newWireGuardKeyPair()
         val client = Libcore.newHttpClient().apply {
             pinnedTLS12()
@@ -60,6 +60,9 @@ object Cloudflare {
                 mtu = 1280,
                 reserved = genReserved(device.config.clientId)
             )
+        } catch (e: Exception) {
+            e.printStackTrace()
+            return null
         } finally {
             client.close()
         }

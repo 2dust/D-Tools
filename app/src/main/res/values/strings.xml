@@ -3,6 +3,8 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_settings">Settings</string>
+    <string name="toast_success">Success</string>
+    <string name="toast_failure">Failure</string>
 
     <string name="cloudflare_wrap" translatable="false">Cloudflare Warp</string>
     <string name="cloudflare_wrap_summary">CloudFlare Warp is a free WireGuard VPN provider. By using it, you agree to the TOS.</string>
