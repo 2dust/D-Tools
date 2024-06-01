@@ -2,30 +2,21 @@ package com.github.dust2.tools.ui.home
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Base64
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.github.dust2.tools.R
 import com.github.dust2.tools.databinding.FragmentHomeBinding
-import com.github.dust2.tools.databinding.LayoutProgressBinding
-import com.github.dust2.tools.dto.SingBoxBean
+import com.github.dust2.tools.ui.BestCdnIpActivity
 import com.github.dust2.tools.ui.CfWarpActivity
-import com.github.dust2.tools.ui.MainActivity
 import com.github.dust2.tools.ui.StunActivity
-import com.github.dust2.tools.ui.VPNScanerActivity
-import com.github.dust2.tools.util.Cloudflare
 import com.github.dust2.tools.util.Utils
 import com.github.dust2.tools.util.onMainDispatcher
-import com.github.dust2.tools.util.runOnDefaultDispatcher
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.isActive
-import java.util.HashMap
+import com.github.dust2.tools.util.runOnIoDispatcher
+import libcore.Libcore
 
 class HomeFragment : Fragment() {
 
@@ -46,6 +37,10 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+        binding.layoutBestCdnIp.setOnClickListener {
+            startActivity(Intent(requireContext(), BestCdnIpActivity::class.java))
+        }
+
         binding.layoutWarpGenerate.setOnClickListener {
             startActivity(Intent(requireContext(), CfWarpActivity::class.java))
         }
@@ -54,9 +49,9 @@ class HomeFragment : Fragment() {
             startActivity(Intent(requireContext(), StunActivity::class.java))
         }
 
-        binding.layoutScanVpnApps.setOnClickListener {
-            startActivity(Intent(requireContext(), VPNScanerActivity::class.java))
-        }
+//        binding.layoutScanVpnApps.setOnClickListener {
+//            startActivity(Intent(requireContext(), VPNScanerActivity::class.java))
+//        }
 
         binding.layoutSourceCode.setOnClickListener {
             Utils.openUri(activity, "https://github.com/2dust/D-Tools")

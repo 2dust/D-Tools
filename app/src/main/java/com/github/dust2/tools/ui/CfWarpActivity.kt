@@ -2,21 +2,17 @@ package com.github.dust2.tools.ui
 
 import android.content.Context
 import android.os.Bundle
-import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
 import com.github.dust2.tools.R
 import com.github.dust2.tools.databinding.LayoutCfWarpBinding
-import com.github.dust2.tools.databinding.LayoutProgressBinding
 import com.github.dust2.tools.dto.SingBoxBean
 import com.github.dust2.tools.util.Cloudflare
 import com.github.dust2.tools.util.Utils
 import com.github.dust2.tools.util.onMainDispatcher
 import com.github.dust2.tools.util.runOnDefaultDispatcher
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.isActive
-import libcore.Libcore
-import java.util.HashMap
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
+
 
 class CfWarpActivity : BaseActivity() {
 
@@ -32,6 +28,10 @@ class CfWarpActivity : BaseActivity() {
         binding.warpGenerate.setOnClickListener {
             generateWarpConfiguration(this)
         }
+
+        binding.idCopy.setOnClickListener {
+            Utils.setClipboard(this, binding.warpResult.text.toString())
+        }
     }
 
 
@@ -42,8 +42,7 @@ class CfWarpActivity : BaseActivity() {
             val bean = Cloudflare.makeWireGuardConfiguration()
             onMainDispatcher {
                 if (bean != null) {
-                    binding.warpResult.text = bean.toString()
-                    Utils.setClipboard(context, genShare(bean))
+                    binding.warpResult.text = beanToString(bean)
                 } else {
                     binding.warpResult.text = getString(R.string.toast_failure)
                 }
@@ -52,6 +51,11 @@ class CfWarpActivity : BaseActivity() {
                 binding.warpGenerate.isVisible = true
             }
         }
+    }
+
+    private fun beanToString(bean: SingBoxBean.OutboundBean): String? {
+        val gson = GsonBuilder().setPrettyPrinting().create()
+        return gson.toJson(bean).toString() + "\n\n" + genShare(bean)
     }
 
     private fun genShare(outbound: SingBoxBean.OutboundBean): String {

@@ -6,7 +6,14 @@
     <string name="toast_success">Success</string>
     <string name="toast_failure">Failure</string>
 
-    <string name="cloudflare_wrap" translatable="false">Cloudflare Warp</string>
+
+    <string name="best_cdn_ip">Best CDN IP</string>
+    <string name="best_cdn_ip_summary">Test the latency from local to CDN IP and select the best one.</string>
+    <string name="best_cdn_ip_result_hint">Best CDN IP result</string>
+    <string name="best_cdn_ip_max_cdn_ips">Maximum number of CDN IP</string>
+    <string name="best_cdn_ip_max_latency">Maximum latency limit</string>
+
+    <string name="cloudflare_wrap">Cloudflare Warp</string>
     <string name="cloudflare_wrap_summary">CloudFlare Warp is a free WireGuard VPN provider. By using it, you agree to the TOS.</string>
     <string name="generating">Generating…</string>
     <string name="cloudflare_wrap_result_hint">Cloudflare Warp result</string>

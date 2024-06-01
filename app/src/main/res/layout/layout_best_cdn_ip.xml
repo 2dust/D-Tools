@@ -42,21 +42,51 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="16dp">
+                        android:orientation="vertical">
 
-                        <TextView
-                            android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/cloudflare_wrap"
-                            android:textAppearance="?attr/textAppearanceHeadline6" />
+                            android:orientation="vertical"
+                            android:padding="16dp">
 
-                        <TextView
-                            android:layout_width="wrap_content"
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/best_cdn_ip_max_cdn_ips"
+                                android:textAppearance="?attr/textAppearanceSubtitle2" />
+
+                            <EditText
+                                android:id="@+id/max_cdn_ips"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:ems="10"
+                                android:inputType="number"
+                                android:maxLength="2" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
-                            android:text="@string/cloudflare_wrap_summary"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+                            android:orientation="vertical"
+                            android:padding="16dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/best_cdn_ip_max_latency"
+                                android:textAppearance="?attr/textAppearanceSubtitle2" />
+
+                            <EditText
+                                android:id="@+id/max_latency"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:ems="10"
+                                android:inputType="number"
+                                android:maxLength="3" />
+
+                        </LinearLayout>
 
 
                     </LinearLayout>
@@ -88,7 +118,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="@string/cloudflare_wrap_result_hint"
+                                android:text="@string/best_cdn_ip_result_hint"
                                 android:textAppearance="?attr/textAppearanceSubtitle2" />
 
                             <ImageView
@@ -100,7 +130,7 @@
                         </LinearLayout>
 
                         <TextView
-                            android:id="@+id/warp_result"
+                            android:id="@+id/best_cdn_ip_result"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp" />
@@ -119,7 +149,7 @@
                     android:orientation="horizontal">
 
                     <Button
-                        android:id="@+id/warpGenerate"
+                        android:id="@+id/ipTest"
                         style="@style/Widget.AppCompat.Button.Borderless"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
