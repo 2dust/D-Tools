@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.github.dust2.tools.R
 import com.github.dust2.tools.databinding.FragmentHomeBinding
+import com.github.dust2.tools.ui.AboutActivity
 import com.github.dust2.tools.ui.BestCdnIpActivity
 import com.github.dust2.tools.ui.CfWarpActivity
 import com.github.dust2.tools.ui.StunActivity
@@ -53,8 +54,8 @@ class HomeFragment : Fragment() {
 //            startActivity(Intent(requireContext(), VPNScanerActivity::class.java))
 //        }
 
-        binding.layoutSourceCode.setOnClickListener {
-            Utils.openUri(activity, "https://github.com/2dust/D-Tools")
+        binding.layoutAbout.setOnClickListener {
+            startActivity(Intent(requireContext(), AboutActivity::class.java))
         }
 
 //        val textView: TextView = binding.textHome

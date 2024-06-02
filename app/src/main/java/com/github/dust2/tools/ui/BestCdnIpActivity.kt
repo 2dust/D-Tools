@@ -10,6 +10,9 @@ import com.github.dust2.tools.util.Utils
 import com.github.dust2.tools.util.onMainDispatcher
 import com.github.dust2.tools.util.runOnIoDispatcher
 import libcore.Libcore
+import java.net.InetAddress
+
+
 
 class BestCdnIpActivity : BaseActivity() {
 
@@ -39,7 +42,8 @@ class BestCdnIpActivity : BaseActivity() {
         val maxIp = Utils.parseInt(binding.maxCdnIps.text.toString(), 10)
         val maxLatency = Utils.parseInt(binding.maxLatency.text.toString(), 300)
 
-        doFindBestCdnIp(cidrs, maxIp, maxLatency)
+        //doFindBestCdnIp(cidrs, maxIp, maxLatency)
+        abc()
     }
 
     private fun doFindBestCdnIp(cidrs: List<String>, maxIp: Int, latency: Int) {
@@ -96,5 +100,32 @@ class BestCdnIpActivity : BaseActivity() {
 
     private fun ipsToString(bestIps: MutableList<Pair<String, Int>>?): String? {
         return bestIps?.map { it.first }?.toList()?.joinToString(separator = "\n")
+    }
+
+    fun abc(){
+
+        var addr = "141.101.64.0/18"
+
+        val parts = addr.split("/")
+        val ip = parts[0]
+        val prefix = if (parts.size < 2) {
+            0
+        } else {
+            parts[1].toInt()
+        }
+        val mask = -0x1 shl (32 - prefix)
+        println("Prefix=$prefix")
+        println("Address=$ip")
+
+        val value = mask
+        val bytes = byteArrayOf(
+            (value ushr 24).toByte(),
+            (value shr 16 and 0xff).toByte(),
+            (value shr 8 and 0xff).toByte(),
+            (value and 0xff).toByte()
+        )
+
+        val netAddr = InetAddress.getByAddress(bytes)
+        println("Mask=" + netAddr.hostAddress)
     }
 }

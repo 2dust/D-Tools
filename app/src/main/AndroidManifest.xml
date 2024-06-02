@@ -66,6 +66,12 @@
             android:configChanges="uiMode"
             android:launchMode="singleTask" />
 
+        <activity
+            android:name=".ui.AboutActivity"
+            android:configChanges="uiMode"
+            android:launchMode="singleTask" />
+
+
     </application>
 
 </manifest>
