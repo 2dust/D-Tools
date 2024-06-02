@@ -15,6 +15,7 @@ import com.github.dust2.tools.util.onMainDispatcher
 import com.github.dust2.tools.util.runOnIoDispatcher
 import libcore.Libcore
 import java.net.InetAddress
+import kotlin.random.Random
 
 
 class BestCdnIpActivity : BaseActivity() {
@@ -46,7 +47,7 @@ class BestCdnIpActivity : BaseActivity() {
     }
 
     private fun findBestCdnIp(context: Context) {
-        val cidrs = Utils.readTextFromAssets(context.applicationContext, "cf_cidrs_v4").lines()
+        val cidrs = Utils.readTextFromAssets(context.applicationContext, "cf_ip_range_v4").lines()
         val maxIp = Utils.parseInt(binding.maxCdnIps.text.toString(), 10)
         val maxLatency = Utils.parseInt(binding.maxLatency.text.toString(), 300)
 
@@ -76,7 +77,7 @@ class BestCdnIpActivity : BaseActivity() {
                         if (result in 1..latency) {
                             bestIps.add(Pair(ip, result))
                         }
-                        Log.d("doFindBestCdnIp", ip + "===" + result.toString())
+                        // Log.d("doFindBestCdnIp", ip + "===" + result.toString())
                         if (bestIps.count() >= maxIp) {
                             break
                         }
@@ -96,15 +97,18 @@ class BestCdnIpActivity : BaseActivity() {
         }
     }
 
-    private fun getCdnIpList(cidrList: List<String>, maxPerRange: Int = 3): List<String> {
+    private fun getCdnIpList(cidrList: List<String>): List<String> {
         val ipList: MutableList<String> = mutableListOf()
-
         cidrList.forEach { cidr ->
-            val ip = cidr.split('/')[0]
-            val ipParts = ip.split(".").toTypedArray()
-            (1..254).shuffled().take(maxPerRange).forEach {
-                ipParts[3] = it.toString()
-                ipList += ipParts.joinToString(".")
+            val fromIp = cidr.split('-')[0].split(".").map { it.toInt() }.toList()
+            val toIp = cidr.split('-')[1].split(".").map { it.toInt() }.toList()
+            (fromIp[0]..toIp[0]).forEach { a ->
+                (fromIp[1]..toIp[1]).forEach { b ->
+                    (fromIp[2]..toIp[2]).forEach { c ->
+                        val d = (0..255).random()
+                        ipList += listOf(a, b, c, d).joinToString(".")
+                    }
+                }
             }
         }
 
