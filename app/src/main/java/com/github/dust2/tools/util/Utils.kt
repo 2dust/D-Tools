@@ -45,7 +45,7 @@ object Utils {
      * @param text
      * @return
      */
-    fun getEditable(text: String): Editable {
+    fun getEditable(text: String?): Editable {
         return Editable.Factory.getInstance().newEditable(text)
     }
 

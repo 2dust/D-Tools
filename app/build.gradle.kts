@@ -56,6 +56,7 @@ dependencies {
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.androidx.cardview)
     implementation(libs.android.tools.smali)
+    implementation((libs.mmkv.static))
 
 
     testImplementation(libs.junit)

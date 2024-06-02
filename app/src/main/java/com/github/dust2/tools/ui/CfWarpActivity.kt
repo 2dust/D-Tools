@@ -3,10 +3,12 @@ package com.github.dust2.tools.ui
 import android.content.Context
 import android.os.Bundle
 import androidx.core.view.isVisible
+import com.github.dust2.tools.AppConfig
 import com.github.dust2.tools.R
 import com.github.dust2.tools.databinding.LayoutCfWarpBinding
 import com.github.dust2.tools.dto.SingBoxBean
 import com.github.dust2.tools.util.Cloudflare
+import com.github.dust2.tools.util.MmkvManager
 import com.github.dust2.tools.util.Utils
 import com.github.dust2.tools.util.onMainDispatcher
 import com.github.dust2.tools.util.runOnDefaultDispatcher
@@ -32,17 +34,22 @@ class CfWarpActivity : BaseActivity() {
         binding.idCopy.setOnClickListener {
             Utils.setClipboard(this, binding.warpResult.text.toString())
         }
+
+        binding.warpResult.text = MmkvManager.getSetting().decodeString(AppConfig.WARP_RESULT, "")
     }
 
 
     private fun generateWarpConfiguration(context: Context) {
+        binding.warpResult.text = ""
         binding.idProgress.isVisible = true
         binding.warpGenerate.isVisible = false
         runOnDefaultDispatcher {
             val bean = Cloudflare.makeWireGuardConfiguration()
             onMainDispatcher {
                 if (bean != null) {
-                    binding.warpResult.text = beanToString(bean)
+                    val str = beanToString(bean)
+                    binding.warpResult.text = str
+                    MmkvManager.getSetting().encode(AppConfig.WARP_RESULT, str)
                 } else {
                     binding.warpResult.text = getString(R.string.toast_failure)
                 }

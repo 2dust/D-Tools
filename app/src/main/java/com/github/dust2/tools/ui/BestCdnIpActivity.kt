@@ -4,14 +4,17 @@ import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.core.view.isVisible
+import com.github.dust2.tools.AppConfig.BEST_CDN_IP_RESULT
+import com.github.dust2.tools.AppConfig.MAX_CDN_IPS
+import com.github.dust2.tools.AppConfig.MAX_LATENCY
 import com.github.dust2.tools.R
 import com.github.dust2.tools.databinding.LayoutBestCdnIpBinding
+import com.github.dust2.tools.util.MmkvManager
 import com.github.dust2.tools.util.Utils
 import com.github.dust2.tools.util.onMainDispatcher
 import com.github.dust2.tools.util.runOnIoDispatcher
 import libcore.Libcore
 import java.net.InetAddress
-
 
 
 class BestCdnIpActivity : BaseActivity() {
@@ -33,8 +36,13 @@ class BestCdnIpActivity : BaseActivity() {
             Utils.setClipboard(this, binding.bestCdnIpResult.text.toString())
         }
 
-        binding.maxCdnIps.text = Utils.getEditable("10")
-        binding.maxLatency.text = Utils.getEditable("300")
+        val maxCdnIps = MmkvManager.getSetting().decodeInt(MAX_CDN_IPS, 10)
+        val maxLatency = MmkvManager.getSetting().decodeInt(MAX_LATENCY, 300)
+        val bestCdnIpResult = MmkvManager.getSetting().decodeString(BEST_CDN_IP_RESULT, "")
+
+        binding.maxCdnIps.text = Utils.getEditable(maxCdnIps.toString())
+        binding.maxLatency.text = Utils.getEditable(maxLatency.toString())
+        binding.bestCdnIpResult.text = bestCdnIpResult
     }
 
     private fun findBestCdnIp(context: Context) {
@@ -42,8 +50,11 @@ class BestCdnIpActivity : BaseActivity() {
         val maxIp = Utils.parseInt(binding.maxCdnIps.text.toString(), 10)
         val maxLatency = Utils.parseInt(binding.maxLatency.text.toString(), 300)
 
-        //doFindBestCdnIp(cidrs, maxIp, maxLatency)
-        abc()
+        MmkvManager.getSetting().encode(MAX_CDN_IPS, maxIp)
+        MmkvManager.getSetting().encode(MAX_LATENCY, maxLatency)
+        binding.bestCdnIpResult.text = ""
+
+        doFindBestCdnIp(cidrs, maxIp, maxLatency)
     }
 
     private fun doFindBestCdnIp(cidrs: List<String>, maxIp: Int, latency: Int) {
@@ -76,7 +87,9 @@ class BestCdnIpActivity : BaseActivity() {
                     null
                 }
             onMainDispatcher {
-                binding.bestCdnIpResult.text = ipsToString(bestIps)
+                val str = ipsToString(bestIps)
+                binding.bestCdnIpResult.text = str
+                MmkvManager.getSetting().encode(BEST_CDN_IP_RESULT, str)
                 binding.idProgress.isVisible = false
                 binding.ipTest.isVisible = true
             }
@@ -102,30 +115,4 @@ class BestCdnIpActivity : BaseActivity() {
         return bestIps?.map { it.first }?.toList()?.joinToString(separator = "\n")
     }
 
-    fun abc(){
-
-        var addr = "141.101.64.0/18"
-
-        val parts = addr.split("/")
-        val ip = parts[0]
-        val prefix = if (parts.size < 2) {
-            0
-        } else {
-            parts[1].toInt()
-        }
-        val mask = -0x1 shl (32 - prefix)
-        println("Prefix=$prefix")
-        println("Address=$ip")
-
-        val value = mask
-        val bytes = byteArrayOf(
-            (value ushr 24).toByte(),
-            (value shr 16 and 0xff).toByte(),
-            (value shr 8 and 0xff).toByte(),
-            (value and 0xff).toByte()
-        )
-
-        val netAddr = InetAddress.getByAddress(bytes)
-        println("Mask=" + netAddr.hostAddress)
-    }
 }
