@@ -13,6 +13,7 @@ import com.github.dust2.tools.util.MmkvManager
 import com.github.dust2.tools.util.Utils
 import com.github.dust2.tools.util.onMainDispatcher
 import com.github.dust2.tools.util.runOnIoDispatcher
+import com.google.android.material.snackbar.Snackbar
 import libcore.Libcore
 import java.net.InetAddress
 import kotlin.random.Random
@@ -30,10 +31,12 @@ class BestCdnIpActivity : BaseActivity() {
         setContentView(binding.root)
 
         binding.ipTest.setOnClickListener {
+            snackBar(R.string.toast_please_wait).show()
             findBestCdnIp(this)
         }
 
         binding.idCopy.setOnClickListener {
+            snackBar(R.string.toast_copy_to_clipboard).show()
             Utils.setClipboard(this, binding.bestCdnIpResult.text.toString())
         }
 
@@ -119,4 +122,7 @@ class BestCdnIpActivity : BaseActivity() {
         return bestIps?.map { it.first }?.toList()?.joinToString(separator = "\n")
     }
 
+    override fun snackBarInternal(text: CharSequence): Snackbar {
+        return Snackbar.make(binding.coordinator, text, Snackbar.LENGTH_LONG)
+    }
 }

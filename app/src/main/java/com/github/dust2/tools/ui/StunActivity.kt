@@ -9,6 +9,7 @@ import com.github.dust2.tools.util.MmkvManager
 import com.github.dust2.tools.util.Utils
 import com.github.dust2.tools.util.onMainDispatcher
 import com.github.dust2.tools.util.runOnDefaultDispatcher
+import com.google.android.material.snackbar.Snackbar
 import libcore.Libcore
 
 class StunActivity : BaseActivity() {
@@ -27,6 +28,7 @@ class StunActivity : BaseActivity() {
         )
 
         binding.stunTest.setOnClickListener {
+            snackBar(R.string.toast_please_wait).show()
             doTest()
         }
 
@@ -59,4 +61,7 @@ class StunActivity : BaseActivity() {
         }
     }
 
+    override fun snackBarInternal(text: CharSequence): Snackbar {
+        return Snackbar.make(binding.coordinator, text, Snackbar.LENGTH_LONG)
+    }
 }

@@ -95,7 +95,7 @@
                                 android:id="@+id/id_copy"
                                 android:layout_width="@dimen/png_height"
                                 android:layout_height="@dimen/png_height"
-                                android:foreground="?attr/selectableItemBackground"
+                                android:background="?attr/selectableItemBackgroundBorderless"
                                 app:srcCompat="@drawable/ic_copy" />
 
                         </LinearLayout>

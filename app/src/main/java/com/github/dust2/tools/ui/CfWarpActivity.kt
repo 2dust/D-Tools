@@ -12,6 +12,7 @@ import com.github.dust2.tools.util.MmkvManager
 import com.github.dust2.tools.util.Utils
 import com.github.dust2.tools.util.onMainDispatcher
 import com.github.dust2.tools.util.runOnDefaultDispatcher
+import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 
@@ -28,10 +29,12 @@ class CfWarpActivity : BaseActivity() {
         setContentView(binding.root)
 
         binding.warpGenerate.setOnClickListener {
+            snackBar(R.string.toast_please_wait).show()
             generateWarpConfiguration(this)
         }
 
         binding.idCopy.setOnClickListener {
+            snackBar(R.string.toast_copy_to_clipboard).show()
             Utils.setClipboard(this, binding.warpResult.text.toString())
         }
 
@@ -96,6 +99,10 @@ class CfWarpActivity : BaseActivity() {
         )
         return "wireguard://" + url + query + remark
 
+    }
+
+    override fun snackBarInternal(text: CharSequence): Snackbar {
+        return Snackbar.make(binding.coordinator, text, Snackbar.LENGTH_LONG)
     }
 
 }
