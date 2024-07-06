@@ -1,16 +1,37 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="AppThemeDayNight" parent="Theme.Material3.DayNight">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_700</item>
-        <item name="colorOnSecondary">@color/black</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
+<resources>
+
+    <style name="AppThemeDayNight" parent="Theme.App.Light" />
+
+    <style name="AppThemeDayNight.NavigationOverlay" parent="Theme.App.Light.NavigationOverlay" />
+
+    <style name="Base.Theme.App.Light" parent="Theme.Material3.DynamicColors.Light">
+<!--        <item name="windowActionBar">false</item>-->
+<!--        <item name="windowNoTitle">true</item>-->
     </style>
+
+    <style name="Theme.App.Light" parent="Base.Theme.App.Light">
+        <item name="android:statusBarColor">?colorPrimary</item>
+        <item name="android:navigationBarColor">?colorNavigationOverlay</item>
+        <item name="colorNavigationOverlay">@color/system_ui_overlay_dark</item>
+    </style>
+
+    <style name="Theme.App.Light.NavigationOverlay">
+        <item name="android:navigationBarColor">?colorNavigationOverlay</item>
+    </style>
+
+    <style name="Base.Theme.App.Dark" parent="Theme.Material3.DynamicColors.Dark">
+<!--        <item name="windowActionBar">false</item>-->
+<!--        <item name="windowNoTitle">true</item>-->
+    </style>
+
+    <style name="DarkAppTheme" parent="Base.Theme.App.Dark">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="colorNavigationOverlay">@color/system_ui_overlay_dark</item>
+    </style>
+
+    <style name="DarkAppTheme.NavigationOverlay">
+        <item name="android:navigationBarColor">?colorNavigationOverlay</item>
+    </style>
+
 </resources>

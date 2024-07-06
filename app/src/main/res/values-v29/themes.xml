@@ -1,0 +1,29 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<style name="Theme.App.Light" parent="Base.Theme.App.Light">
+		<item name="android:enforceNavigationBarContrast">false</item>
+		<item name="android:statusBarColor">@android:color/transparent</item>
+		<item name="android:windowLightStatusBar">true</item>
+		<item name="android:navigationBarColor">@android:color/transparent</item>
+		<item name="android:windowLightNavigationBar">true</item>
+		<item name="colorNavigationOverlay">@color/system_ui_overlay_light</item>
+	</style>
+
+	<style name="Theme.App.Light.NavigationOverlay">
+		<item name="android:enforceNavigationBarContrast">true</item>
+		<item name="android:navigationBarColor">@android:color/transparent</item>
+	</style>
+
+	<style name="Theme.App.Dark" parent="Base.Theme.App.Dark">
+		<item name="android:enforceNavigationBarContrast">false</item>
+		<item name="android:statusBarColor">@android:color/transparent</item>
+		<item name="android:navigationBarColor">@android:color/transparent</item>
+		<item name="colorNavigationOverlay">@color/system_ui_overlay_dark</item>
+	</style>
+
+	<style name="Theme.App.Dark.NavigationOverlay">
+		<item name="android:enforceNavigationBarContrast">true</item>
+		<item name="android:navigationBarColor">@android:color/transparent</item>
+	</style>
+
+</resources>
