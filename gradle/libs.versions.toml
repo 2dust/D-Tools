@@ -14,7 +14,7 @@ lifecycleViewmodelKtx = "2.8.7"
 navigationFragmentKtx = "2.8.4"
 navigationUiKtx = "2.8.4"
 cardview = "1.0.0"
-smaliDexlib2 = "3.0.7"
+smaliDexlib2 = "3.0.8"
 mmkv = "2.0.1"
 
 [libraries]
