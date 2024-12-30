@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="language_select" translatable="false">
+        <item>auto</item>
+        <item>en</item>
+        <item>فارسی</item>
+    </string-array>
+
+
+    <string-array name="language_select_value" translatable="false">
+      <item>auto</item>
+      <item>en</item>
+      <item>fa</item>
+    </string-array>
+</resources>
