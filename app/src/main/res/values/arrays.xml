@@ -8,8 +8,8 @@
 
 
     <string-array name="language_select_value" translatable="false">
-      <item>auto</item>
-      <item>en</item>
-      <item>fa</item>
+        <item>auto</item>
+        <item>en</item>
+        <item>fa</item>
     </string-array>
 </resources>
